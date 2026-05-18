@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alok Kumar | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Inter',sans-serif;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:#050816;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    .container{
+      width:min(1180px,90%);
+      margin:auto;
+    }
+
+    header{
+      position:fixed;
+      width:100%;
+      top:0;
+      left:0;
+      z-index:1000;
+      backdrop-filter:blur(14px);
+      background:rgba(5,8,22,0.7);
+      border-bottom:1px solid rgba(255,255,255,0.06);
+    }
+
+    nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:22px 0;
+    }
+
+    .logo{
+      font-size:24px;
+      font-weight:800;
+      letter-spacing:1px;
+    }
+
+    .logo span{
+      color:#7c3aed;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:34px;
+    }
+
+    .nav-links a{
+      color:#d1d5db;
+      text-decoration:none;
+      font-size:15px;
+      transition:.3s;
+    }
+
+    .nav-links a:hover{
+      color:white;
+    }
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      width:600px;
+      height:600px;
+      background:#7c3aed;
+      filter:blur(140px);
+      opacity:.18;
+      top:-120px;
+      right:-100px;
+      border-radius:50%;
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      width:450px;
+      height:450px;
+      background:#06b6d4;
+      filter:blur(140px);
+      opacity:.15;
+      bottom:-120px;
+      left:-100px;
+      border-radius:50%;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      align-items:center;
+      gap:70px;
+      position:relative;
+      z-index:2;
+    }
+
+    .tag{
+      display:inline-block;
+      padding:10px 16px;
+      background:rgba(124,58,237,.14);
+      border:1px solid rgba(124,58,237,.3);
+      border-radius:999px;
+      color:#c4b5fd;
+      margin-bottom:26px;
+      font-size:14px;
+    }
+
+    h1{
+      font-size:72px;
+      line-height:1;
+      margin-bottom:20px;
+      font-weight:800;
+    }
+
+    h1 span{
+      color:#8b5cf6;
+    }
+
+    .hero p{
+      color:#cbd5e1;
+      font-size:18px;
+      line-height:1.8;
+      max-width:650px;
+      margin-bottom:34px;
+    }
+
+    .buttons{
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:15px 28px;
+      border-radius:14px;
+      text-decoration:none;
+      font-weight:600;
+      transition:.3s;
+    }
+
+    .btn-primary{
+      background:linear-gradient(135deg,#8b5cf6,#6366f1);
+      color:white;
+      box-shadow:0 15px 40px rgba(124,58,237,.35);
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-3px);
+    }
+
+    .btn-secondary{
+      border:1px solid rgba(255,255,255,.12);
+      color:white;
+      background:rgba(255,255,255,.04);
+    }
+
+    .card{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      padding:38px;
+      border-radius:28px;
+      backdrop-filter:blur(18px);
+      box-shadow:0 20px 60px rgba(0,0,0,.35);
+    }
+
+    .profile-card h3{
+      font-size:32px;
+      margin-bottom:14px;
+    }
+
+    .profile-card p{
+      margin-bottom:14px;
+      color:#d1d5db;
+      line-height:1.7;
+    }
+
+    section{
+      padding:120px 0;
+      position:relative;
+      z-index:2;
+    }
+
+    .section-header{
+      text-align:center;
+      margin-bottom:60px;
+    }
+
+    .section-header h2{
+      font-size:48px;
+      margin-bottom:14px;
+    }
+
+    .section-header p{
+      color:#94a3b8;
+      max-width:700px;
+      margin:auto;
+      line-height:1.8;
+    }
+
+    .about-card{
+      padding:50px;
+      line-height:1.9;
+      color:#cbd5e1;
+      font-size:17px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:28px;
+    }
+
+    .skill-card,
+    .project-card{
+      transition:.35s;
+    }
+
+    .skill-card:hover,
+    .project-card:hover{
+      transform:translateY(-10px);
+      border-color:rgba(139,92,246,.4);
+    }
+
+    .skill-card h3,
+    .project-card h3{
+      font-size:24px;
+      margin-bottom:14px;
+    }
+
+    .skill-card p,
+    .project-card p{
+      color:#cbd5e1;
+      line-height:1.8;
+    }
+
+    .project-card{
+      position:relative;
+      overflow:hidden;
+      min-height:280px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    .project-card::before{
+      content:"";
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:5px;
+      background:linear-gradient(90deg,#8b5cf6,#06b6d4);
+    }
+
+    .project-tag{
+      display:inline-block;
+      width:max-content;
+      padding:7px 12px;
+      border-radius:999px;
+      background:rgba(139,92,246,.15);
+      color:#c4b5fd;
+      font-size:13px;
+      margin-bottom:18px;
+      border:1px solid rgba(139,92,246,.25);
+    }
+
+    .project-card p{
+      margin-bottom:24px;
+    }
+
+    .project-link{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:14px 16px;
+      border-radius:14px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      color:white;
+      text-decoration:none;
+      font-weight:600;
+      transition:.3s;
+    }
+
+    .project-link:hover{
+      background:linear-gradient(135deg,#8b5cf6,#6366f1);
+      transform:translateX(4px);
+    }
+
+    .contact-box{
+      text-align:center;
+      padding:70px 40px;
+    }
+
+    .contact-box h2{
+      font-size:54px;
+      margin-bottom:18px;
+    }
+
+    .contact-box p{
+      color:#cbd5e1;
+      max-width:700px;
+      margin:0 auto 34px;
+      line-height:1.8;
+    }
+
+    .contact-links{
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:16px;
+    }
+
+    .contact-links a{
+      padding:15px 22px;
+      border-radius:14px;
+      background:rgba(255,255,255,.06);
+      color:white;
+      text-decoration:none;
+      border:1px solid rgba(255,255,255,.08);
+      transition:.3s;
+    }
+
+    .contact-links a:hover{
+      background:#7c3aed;
+    }
+
+    footer{
+      border-top:1px solid rgba(255,255,255,.08);
+      padding:26px 0;
+      text-align:center;
+      color:#94a3b8;
+      font-size:14px;
+    }
+
+    @media(max-width:900px){
+      h1{
+        font-size:54px;
+      }
+
+      .hero-grid{
+        grid-template-columns:1fr;
+      }
+
+      .profile-card{
+        width:100%;
+      }
+    }
+
+    @media(max-width:600px){
+      .nav-links{
+        display:none;
+      }
+
+      h1{
+        font-size:42px;
+      }
+
+      .section-header h2,
+      .contact-box h2{
+        font-size:36px;
+      }
+
+      .about-card,
+      .card{
+        padding:30px;
+      }
+
+      section{
+        padding:90px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+      <div class="logo">ALOK<span>.</span></div>
+
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-grid">
+
+    <div>
+      <div class="tag">Digital Marketing • SEO • Web Development</div>
+
+      <h1>Building <span>Digital Growth</span> For Brands</h1>
+
+      <p>
+        I’m Alok Kumar, a Digital Marketing Executive with experience in SEO, Google Ads, Meta Ads, lead generation and modern website development. I help businesses improve online visibility and generate quality leads.
+      </p>
+
+      <div class="buttons">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-secondary">Hire Me</a>
+      </div>
+    </div>
+
+    <div class="card profile-card">
+      <h3>About Me</h3>
+
+      <p>
+        Experience in real estate marketing, business websites, SEO optimization and conversion-focused landing pages.
+      </p>
+
+      <p><strong>Experience:</strong> 2+ Years</p>
+      <p><strong>Focus:</strong> SEO, Ads, Website Development</p>
+      <p><strong>Projects:</strong> KJS Township, UrgentSales.in</p>
+      <p><strong>Available:</strong> Freelance & Part-time</p>
+    </div>
+
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+
+    <div class="section-header">
+      <h2>About Me</h2>
+      <p>Professional background and experience.</p>
+    </div>
+
+    <div class="card about-card">
+      I am a Digital Marketing Executive with practical experience in SEO, Google Ads, Meta Ads, lead generation and business website optimization. I have worked on multiple real estate and business projects, helping brands improve visibility, generate leads and build a strong online presence.
+
+      <br><br>
+
+      I also have knowledge of HTML, CSS and JavaScript and experience managing websites using AI-assisted workflows. My focus is on creating clean, modern and conversion-oriented digital experiences.
+    </div>
+
+  </div>
+</section>
+
+<section id="skills">
+  <div class="container">
+
+    <div class="section-header">
+      <h2>Skills</h2>
+      <p>Areas and tools I work with professionally.</p>
+    </div>
+
+    <div class="grid">
+
+      <div class="card skill-card">
+        <h3>SEO Optimization</h3>
+        <p>On-page SEO, technical SEO, schema markup, indexing, speed optimization and search visibility improvements.</p>
+      </div>
+
+      <div class="card skill-card">
+        <h3>Google & Meta Ads</h3>
+        <p>Lead generation campaigns, audience targeting, ad copy optimization and marketing strategy.</p>
+      </div>
+
+      <div class="card skill-card">
+        <h3>Web Development</h3>
+        <p>HTML, CSS, JavaScript, landing pages and modern responsive business websites.</p>
+      </div>
+
+      <div class="card skill-card">
+        <h3>Lead Generation</h3>
+        <p>Real estate marketing, inquiry optimization, WhatsApp conversion flow and campaign management.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+
+    <div class="section-header">
+      <h2>Projects</h2>
+      <p>Some of the websites and businesses I have worked on.</p>
+    </div>
+
+    <div class="grid">
+
+      <div class="card project-card">
+        <div>
+          <span class="project-tag">Real Estate Website</span>
+          <h3>KJS Township</h3>
+          <p>Industrial real estate website focused on warehouse and factory plots near Delhi NCR with SEO, performance and technical optimization.</p>
+        </div>
+        <a class="project-link" href="https://www.kjstownship.com" target="_blank">View Website <span>→</span></a>
+      </div>
+
+      <div class="card project-card">
+        <div>
+          <span class="project-tag">Property Platform</span>
+          <h3>UrgentSales.in</h3>
+          <p>Real estate platform for urgent property sales, seller leads, buyer connection and property marketing campaigns.</p>
+        </div>
+        <a class="project-link" href="https://www.urgentsales.in" target="_blank">View Website <span>→</span></a>
+      </div>
+
+      <div class="card project-card">
+        <div>
+          <span class="project-tag">Jewelry Brand</span>
+          <h3>Eraya Style</h3>
+          <p>Jewelry and personalized necklace brand focused on stylish custom products, customer engagement and digital brand presence.</p>
+        </div>
+        <a class="project-link" href="https://www.erayastyle.com/" target="_blank">View Website <span>→</span></a>
+      </div>
+
+      <div class="card project-card">
+        <div>
+          <span class="project-tag">Healthcare Marketing</span>
+          <h3>Soniva Dental</h3>
+          <p>Digital marketing and online branding support for a dental clinic including visibility improvement and promotional campaign assistance.</p>
+        </div>
+        <a class="project-link" href="https://sonivadental.com/" target="_blank">View Website <span>→</span></a>
+      </div>
+
+      <div class="card project-card">
+        <div>
+          <span class="project-tag">Brand Marketing</span>
+          <h3>Leenus India</h3>
+          <p>Worked on marketing support, branding visibility and digital presence enhancement for business campaigns and promotional activities.</p>
+        </div>
+        <a class="project-link" href="https://leenusindia.com/" target="_blank">View Website <span>→</span></a>
+      </div>
+
+      <div class="card project-card">
+        <div>
+          <span class="project-tag">Service Business</span>
+          <h3>MV Jindal Elevators</h3>
+          <p>Marketing content and service positioning for elevator installation, maintenance, commercial and residential lift services.</p>
+        </div>
+        <a class="project-link" href="https://www.google.com" target="_blank">View Website <span>→</span></a>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+
+    <div class="card contact-box">
+      <h2>Let’s Work Together</h2>
+
+      <p>
+        Interested in digital marketing, SEO optimization, business websites or lead generation support? Let’s connect.
+      </p>
+
+      <div class="contact-links">
+        <a href="mailto:aalokkumarroy12@gmail.com">Email</a>
+        <a href="https://github.com/demonslayer8" target="_blank">GitHub</a>
+        <a href="https://wa.me/918271015745" target="_blank">WhatsApp</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  © 2026 Alok Kumar — Portfolio Website
+</footer>
+
+</body>
+</html>
